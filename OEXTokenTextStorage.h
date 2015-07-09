@@ -14,7 +14,7 @@
  */
 @interface OEXTokenTextStorage : NSTextStorage
 
-@property(nonatomic, weak) id <OEXTokenTextStorageDelegate> delegate;
+@property(nonatomic, weak) id <OEXTokenTextStorageDelegate> oex_delegate;
 
 - (id)initWithAttributedString:(NSAttributedString *)attrStr;
 

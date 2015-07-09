@@ -22,8 +22,6 @@ static int kOEXTokenFieldCellRepresentedObjectKey;
     NSArray             *_objects;
 }
 
-@dynamic delegate;
-
 #pragma mark - Attributed String Value
 
 - (NSAttributedString *)attributedStringValue
@@ -74,7 +72,7 @@ static int kOEXTokenFieldCellRepresentedObjectKey;
             [layoutManager replaceTextStorage:textStorage];
         }
         
-        textStorage.delegate = self;
+        textStorage.oex_delegate = self;
     }
     
     return textView;
@@ -87,7 +85,7 @@ static int kOEXTokenFieldCellRepresentedObjectKey;
     {
         OEXTokenTextStorage *textStorage = (OEXTokenTextStorage *) textView.textContainer.layoutManager.textStorage;
         if ( [textStorage isKindOfClass:[OEXTokenTextStorage class]] ) {
-            textStorage.delegate = nil;
+            textStorage.oex_delegate = nil;
         }
     }
     [super endEditing:textObj];
@@ -111,11 +109,11 @@ static int kOEXTokenFieldCellRepresentedObjectKey;
     [attachment setAttachmentCell:cell];
 }
 
-- (NSTextAttachmentCell *)attachmentCellForRepresentedObject:(id)representedObject;
+- (NSTextAttachmentCell *)attachmentCellForRepresentedObject:(id)representedObject
 {
     NSTextAttachmentCell *cell = nil;
-    if ( [self.delegate respondsToSelector:@selector(tokenFieldCell:attachmentCellForRepresentedObject:)] ) {
-        cell = [self.delegate tokenFieldCell:self attachmentCellForRepresentedObject:representedObject];
+    if ( [self.oex_delegate respondsToSelector:@selector(tokenFieldCell:attachmentCellForRepresentedObject:)] ) {
+        cell = [self.oex_delegate tokenFieldCell:self attachmentCellForRepresentedObject:representedObject];
     }
     
     cell.font = self.font;
