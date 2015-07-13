@@ -52,7 +52,8 @@
 {
     [aTextView setSelectedRange:NSMakeRange(charIndex, 1)];
 
-    CGPoint position = [aTextView convertPoint:cellFrame.origin toView:nil];
+    CGPoint popupPosition = CGPointMake(cellFrame.origin.x + cellFrame.size.width, cellFrame.origin.y);
+    CGPoint position = [aTextView convertPoint:popupPosition toView:nil];
 
     NSEvent *event = [NSEvent mouseEventWithType:NSLeftMouseDown location:position modifierFlags:0 timestamp:[[NSProcessInfo processInfo] systemUptime] windowNumber:self.window.windowNumber context:nil eventNumber:0 clickCount:1 pressure:1];
 
