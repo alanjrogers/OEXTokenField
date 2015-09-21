@@ -16,10 +16,9 @@
 
 #pragma mark - init
 
-- (id)initWithAttributedString:(NSAttributedString *)attrStr
-{
-    if ( ! (self = [super init]) )
-        return nil;
+- (id)initWithAttributedString:(NSAttributedString *)attrStr {
+    self = [super init];
+    if (self == nil) return nil;
     
     _string = [[NSMutableAttributedString alloc] initWithAttributedString:attrStr];
     return self;
@@ -27,7 +26,12 @@
 
 - (id)init
 {
-    return [self initWithAttributedString:nil];
+    self = [super init];
+    if (self == nil) return nil;
+
+    _string = [[NSMutableAttributedString alloc] init];
+    
+    return self;
 }
 
 #pragma mark - Primitive Methods
